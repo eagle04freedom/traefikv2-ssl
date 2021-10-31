@@ -5,9 +5,9 @@ Traefikv2 + cert-manager + LetsEncrypt
 
 
 
-## 1. Configure Pebble
+## 2. Configure Pebble
 
-### 1.1 Prepare pebble repo for installation
+### 2.1 Prepare pebble repo for installation
 
 ```sh
 $ helm repo add jupyterhub https://jupyterhub.github.io/helm-chart/
@@ -31,16 +31,16 @@ coredns:
 
 ```
 
-### 1.2 Install Pebbele in kdp namespace
+### 2.2 Install Pebbele in kdp namespace
 ```sh
 $ helm install pebble jupyterhub/pebble -f pebble/custom-values.yaml -n kdp
 ```
 
 > take screenshot of few output after installation
  
-## 2. Traefik:
+## 3. Traefik:
 
-### 2.1 Configure traefik-values.yaml
+### 3.1 Configure traefik-values.yaml
 
   * Add below content to traefikcustom-values.yaml file along with the existing content of values-test.yaml.
   * Make sure to clean the resources with certs & related secrets & deploy traefik with these values.
@@ -74,11 +74,16 @@ env:
     value: "/certs/root-cert.pem"
 
 ```
-  * Install helm v2 ssl
+### 3.2 Install traefikV2 ssl
  
 ```sh
 $ helm upgrade traefik <path> --install -f <path>/traefikcustom-values.yaml -n kdp
 ```
+
+### 3.3 Configure Ingressroute for Traefik Dashboard
+
+
+### 3.4 Configure Ingressroute for Application UI 
 
 
 
